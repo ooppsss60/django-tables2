@@ -35,6 +35,7 @@ class JSONColumn(BaseLinkColumn):
         used manually without it.
 
     Arguments:
+    ---------
         json_dumps_kwargs: kwargs passed to `json.dumps`, defaults to `{'indent': 2}`
         attrs (dict): In addition to *attrs* keys supported by `~.Column`, the
             following are available:
@@ -60,5 +61,5 @@ class JSONColumn(BaseLinkColumn):
     @classmethod
     def from_field(cls, field, **kwargs):
         if POSTGRES_AVAILABLE:
-            if isinstance(field, (JSONField, HStoreField)):
+            if isinstance(field, JSONField | HStoreField):
                 return cls(**kwargs)
